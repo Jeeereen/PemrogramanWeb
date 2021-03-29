@@ -1,0 +1,32 @@
+#daftar {
+    background-color: #dddddd;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    margin: 0px auto 0px auto;
+    width: 500px;
+}
+.judul {
+    font-size: 30px;
+    font-weight: bold;
+}
+label {
+    padding-left: 30px;
+}
+tr, td{
+    padding: 5px;
+}
+#terdaftar {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    margin: 0px auto 0px auto;
+    width: 500px;
+}
+#terdaftar table{
+    border: #dddddd ;
+}
+#terdaftar th{
+    background-color: #fdfe00;
+    padding: 5px;
+}
