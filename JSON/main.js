@@ -13,66 +13,110 @@ function loadglobal(){
     } 
     xhr.send();
 }
-document.getElementById('btn-idn').addEventListener('click', loadidn);
+var country = [
+    "idn",
+    "phl",
+    "tha",
+    "mys",
+    "sgp"
+]
 
-function loadidn(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET','https://covid19.mathdro.id/api/countries/idn',true);
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(this.responseText);
-            // console.log(data);
-            var idn ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
-            document.getElementById('idn').innerHTML = idn;
-        }
-    } 
-    xhr.send();
-}
-document.getElementById('btn-phl').addEventListener('click', loadphl);
+country.forEach(loadData);
 
-function loadphl(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET','https://covid19.mathdro.id/api/countries/phl',true);
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(this.responseText);
-            // console.log(data);
-            var phl ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
-            document.getElementById('phl').innerHTML = phl;
-        }
-    } 
-    xhr.send();
-}
-document.getElementById('btn-tha').addEventListener('click', loadtha);
+function loadData(country){
+    document.getElementById('btn-'+country).addEventListener('click',
+    function(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','https://covid19.mathdro.id/api/countries/'+country,true);
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = JSON.parse(this.responseText);
+                // console.log(data);
+                var output ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
+                document.getElementById(country).innerHTML = output;
+            }
+        } 
+        xhr.send();
+    });
 
-function loadtha(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET','https://covid19.mathdro.id/api/countries/tha',true);
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(this.responseText);
-            // console.log(data);
-            var tha ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
-            document.getElementById('tha').innerHTML = tha;
-        }
-    } 
-    xhr.send();
+    
 }
-document.getElementById('btn-mys').addEventListener('click', loadmys);
 
-function loadmys(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET','https://covid19.mathdro.id/api/countries/mys',true);
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(this.responseText);
-            // console.log(data);
-            var mys ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
-            document.getElementById('mys').innerHTML = mys;
-        }
-    } 
-    xhr.send();
-}
+// document.getElementById('btn-global').addEventListener('click', loadglobal);
+
+// function loadglobal(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET','https://covid19.mathdro.id/api',true);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             var data = JSON.parse(this.responseText);
+//             // console.log(data);
+//             var global ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
+//             document.getElementById('global').innerHTML = global;
+//         }
+//     } 
+//     xhr.send();
+// }
+// document.getElementById('btn-idn').addEventListener('click', loadidn);
+
+// function loadidn(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET','https://covid19.mathdro.id/api/countries/idn',true);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             var data = JSON.parse(this.responseText);
+//             // console.log(data);
+//             var idn ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
+//             document.getElementById('idn').innerHTML = idn;
+//         }
+//     } 
+//     xhr.send();
+// }
+// document.getElementById('btn-phl').addEventListener('click', loadphl);
+
+// function loadphl(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET','https://covid19.mathdro.id/api/countries/phl',true);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             var data = JSON.parse(this.responseText);
+//             // console.log(data);
+//             var phl ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
+//             document.getElementById('phl').innerHTML = phl;
+//         }
+//     } 
+//     xhr.send();
+// }
+// document.getElementById('btn-tha').addEventListener('click', loadtha);
+
+// function loadtha(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET','https://covid19.mathdro.id/api/countries/tha',true);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             var data = JSON.parse(this.responseText);
+//             // console.log(data);
+//             var tha ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
+//             document.getElementById('tha').innerHTML = tha;
+//         }
+//     } 
+//     xhr.send();
+// }
+// document.getElementById('btn-mys').addEventListener('click', loadmys);
+
+// function loadmys(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET','https://covid19.mathdro.id/api/countries/mys',true);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             var data = JSON.parse(this.responseText);
+//             // console.log(data);
+//             var mys ='<p>Jumlah korban yang <b>terjangkit</b> COVID19 telah dikonfirmasi sebanyak <b>'+data['confirmed'].value+'</b> orang.</p><p>Jumlah korban yang telah <b>sembuh</b> dari COVID19 telah dikonfirmasi sebanyak <b>'+data['recovered'].value+'</b> orang.</p><p>Jumlah korban yang <b>meninggal</b> akibat COVID19 telah dikonfirmasi sebanyak <b>'+data['deaths'].value+'</b> orang.</p>';
+//             document.getElementById('mys').innerHTML = mys;
+//         }
+//     } 
+//     xhr.send();
+// }
 // readyState Values
     // 0: request not initialized
     // 1: server connection established
